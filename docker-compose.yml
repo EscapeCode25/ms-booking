@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db-booking:
+    image: mysql:8.0
+    container_name: db-booking
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bookingdb
+      MYSQL_USER: bookinguser
+      MYSQL_PASSWORD: bookingpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - booking-mysql-data:/var/lib/mysql
+    networks:
+      - booking-network
+
+volumes:
+  booking-mysql-data:
+
+networks:
+  booking-network:
+    driver: bridge
